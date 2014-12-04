@@ -69,7 +69,10 @@ a:focus {
 
 #theMoreYouLower {
 	background: #E8E8E8;
-	text-align: right;
+}
+
+#theMoreYouLower p {
+	margin-left: 50px;
 }
 
 #theMoreYouLower h2 {
