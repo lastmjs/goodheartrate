@@ -139,6 +139,12 @@ a:focus {
 	/*vertical-align: middle;*/
 }
 
+.intro .intro-body .brand-super-heading {
+	margin-bottom: 10px;
+	font-size: 20px;
+	font-family: Ubuntu;
+}
+
 .intro .intro-body .brand-heading {
 	font-size: 40px;
 	margin: 0 0 35px;
@@ -157,6 +163,12 @@ a:focus {
 	.intro {
 		height: 100%;
 		padding: 0;
+	}
+	
+	.intro .intro-body .brand-super-heading {
+		margin-bottom: 10px;
+		font-size: 25px;
+		font-family: Ubuntu;
 	}
 
 	.intro .intro-body .brand-heading {
