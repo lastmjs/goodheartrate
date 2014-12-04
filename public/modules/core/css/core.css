@@ -26,6 +26,7 @@ p {
 
 h2 {
 	font-family: Ubuntu;
+	margin-bottom: 30px;
 }
 
 @media(min-width:767px) {
@@ -49,10 +50,37 @@ a:focus {
 	color: #11505d;
 }
 
-.theMoreYouLower {
-	background: #E8E8E8;
+.my-section {
 	width: 100%;
 	color: #000000;
+}
+
+#whyTrack {
+	background: #ffffff;
+}
+
+#whyTrack p {
+	margin-left: 50px;
+}
+
+#whyTrack h2 {
+	font-size: 50px;
+}
+
+#theMoreYouLower {
+	background: #E8E8E8;
+	text-align: right;
+}
+
+#theMoreYouLower h2 {
+	font-size: 50px;
+}
+
+.close-together {
+	margin-left: auto;
+	margin-right: auto;
+	padding-right:15px;
+	padding-left:15px;
 }
 
 .light {
@@ -272,8 +300,8 @@ a:focus {
 }
 
 .content-section {
-	padding-top: 100px;
-	padding-bottom: 100px;
+	padding-top: 60px;
+	padding-bottom: 60px;
 }
 
 .download-section {
@@ -296,8 +324,8 @@ a:focus {
 
 @media(min-width:767px) {
 	.content-section {
-		padding-top: 250px;
-		padding-bottom: 250px;
+		padding-top: 150px;
+		padding-bottom: 150px;
 	}
 
 	.download-section {
