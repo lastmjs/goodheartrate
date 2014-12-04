@@ -44,8 +44,8 @@
 </head>
 
 <body id="page-top" class="ng-cloak" data-spy="scroll" data-target=".navbar-fixed-top">
-	<!--<header data-ng-include="'/modules/core/views/header.client.view.html'" class="intro"></header>-->
-	<div data-ng-include="'/modules/core/views/header.client.view.html'"></div>
+	
+	<ng-include src="'/modules/core/views/header.client.view.html'"></ng-include>
 	
 	<section class="content">
 		<section class="container">
@@ -57,9 +57,6 @@
 	<script type="text/javascript">
 		var user = {{ user | json | safe }};
 	</script>
-	
-	<!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
 
 	<!--Application JavaScript Files-->
 	{% for jsFile in jsFiles %}<script type="text/javascript" src="{{jsFile}}"></script>{% endfor %} 
