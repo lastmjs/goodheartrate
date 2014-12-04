@@ -159,6 +159,10 @@ a:focus {
 	font-size: 18px;
 }
 
+.intro .intro-body .brand-super-heading {
+	font-size: 25px;
+}
+
 @media(min-width:767px) {
 	.intro {
 		height: 100%;
