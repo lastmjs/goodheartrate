@@ -20,7 +20,7 @@
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
 					<li>
-						<a id="login" ng-click="loginClick()" class="page-scroll">Login</a>
+						<a id="login" ng-click="loginButtonClick()" class="page-scroll">Login</a>
 						<form id="loginForm" ng-show="loginOpen" data-ng-submit="login()" class="credentialsArea signin form-horizontal" autocomplete="off">
 							<div class="form-group">
 								<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">
@@ -37,7 +37,7 @@
 						</form>
 					</li>
 					<li>
-						<a id="signup" ng-click="signupClick()" class="page-scroll">Sign Up</a>
+						<a id="signup" ng-click="signupButtonClick()" class="page-scroll">Sign Up</a>
 						<form id="signupForm" ng-show="signupOpen" data-ng-submit="signup()" class="credentialsArea signin form-horizontal" autocomplete="off">
 							<div class="form-group">
 								<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">

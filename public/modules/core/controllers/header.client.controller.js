@@ -1,30 +1,48 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Authentication', 'Menus',
-	function($scope, Authentication, Menus) {
+angular.module('core').controller('HeaderController', ['$scope', 'Authentication',
+	function($scope, Authentication) {
 		$scope.authentication = Authentication;
-		$scope.isCollapsed = false;
-		$scope.menu = Menus.getMenu('topbar');
 		$scope.loginOpen = false;
 		$scope.signupOpen = false;
 		
-		$scope.loginClick = function() {
+		$scope.loginButtonClick = function() {
 			$scope.loginOpen = !$scope.loginOpen;
 			$scope.signupOpen = false;
 		};
 		
-		$scope.signupClick = function() {
+		$scope.signupButtonClick = function() {
 			$scope.signupOpen = !$scope.signupOpen;
 			$scope.loginOpen = false;
 		};
-
-		$scope.toggleCollapsibleMenu = function() {
-			$scope.isCollapsed = !$scope.isCollapsed;
+		
+		$scope.credentials = {
+			username: '',
+			password: ''
 		};
+		
+		$scope.login = function() {
+			$http.post('/auth/login', $scope.credentials).success(function(response) {
+				// If successful we assign the response to the global user model
+				$scope.authentication.user = response;
 
-		// Collapsing the menu after navigation
-		$scope.$on('$stateChangeSuccess', function() {
-			$scope.isCollapsed = false;
-		});
+				// And redirect to the index page
+				$location.path('/');
+			}).error(function(response) {
+				$scope.error = response.message;
+			});
+		};
+		
+		$scope.signup = function() {
+			$http.post('/auth/signup', $scope.credentials).success(function(response) {
+				// If successful we assign the response to the global user model
+				$scope.authentication.user = response;
+
+				// And redirect to the index page
+				$location.path('/');
+			}).error(function(response) {
+				$scope.error = response.message;
+			});
+		};
 	}
 ]);
