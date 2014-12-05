@@ -50,6 +50,24 @@ a:focus {
 	color: #11505d;
 }
 
+.signUpArea {
+	visibility: hidden;
+	position: absolute;
+	background: rgba(255,255,255,.3);
+	right: 0px;
+	padding-right: 50px;
+	padding-left: 50px;
+}
+
+.loginArea {
+	visibility: hidden;
+	position: absolute;
+	width: 500px;
+	height: 500px;
+	background: #ffffff;
+	right: 0px;
+}
+
 .my-section {
 	width: 100%;
 	color: #000000;
