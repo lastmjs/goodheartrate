@@ -20,26 +20,38 @@
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
 					<li>
-						<a ghr-signup-button class="page-scroll" href="#about">Login | Sign Up</a>
-						<div id="signUpArea" class="signUpArea">
-							<form data-ng-submit="signin()" class="signin form-horizontal" autocomplete="off">
-								<fieldset>
-									<div class="form-group">
-										<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">
-									</div>
-									<div class="form-group">
-										<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
-									</div>
-									<div class="text-center form-group">
-										<button id="loginButton" type="submit" class="btn btn-primary">Login</button>&nbsp; or&nbsp;
-										<a href="/#!/signup">Sign up</a>
-									</div>
-									<div data-ng-show="error" class="text-center text-danger">
-										<strong data-ng-bind="error"></strong>
-									</div>
-								</fieldset>
-							</form>
-						</div>
+						<a id="login" ghr-authentication-area class="page-scroll" href="/#!/signin">Login</a>
+						<form id="loginForm" data-ng-submit="login()" class="credentialsArea signin form-horizontal" autocomplete="off">
+							<div class="form-group">
+								<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+							</div>
+							<div class="text-center form-group">
+								<button id="loginButton" type="submit" class="btn btn-primary">Login</button>
+							</div>
+							<div data-ng-show="error" class="text-center text-danger">
+								<strong data-ng-bind="error"></strong>
+							</div>
+						</form>
+					</li>
+					<li>
+						<a id="signup" ghr-authentication-area class="page-scroll">Sign Up</a>
+						<form id="signupForm" data-ng-submit="signup()" class="credentialsArea signin form-horizontal" autocomplete="off">
+							<div class="form-group">
+								<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">
+							</div>
+							<div class="form-group">
+								<input type="password" id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="Password">
+							</div>
+							<div class="text-center form-group">
+								<button id="signupButton" type="submit" class="btn btn-primary">Sign up</button>
+							</div>
+							<div data-ng-show="error" class="text-center text-danger">
+								<strong data-ng-bind="error"></strong>
+							</div>
+						</form>
 					</li>
 				</ul>
 			</div>
