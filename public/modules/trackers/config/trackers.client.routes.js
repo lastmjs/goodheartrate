@@ -5,7 +5,11 @@ angular.module('trackers').config(['$stateProvider',
 	function($stateProvider) {
 		// Trackers state routing
 		$stateProvider.
-		state('listTrackers', {
+		state('index', {
+			url: '/tracker',
+			templateUrl: 'modules/trackers/views/index-tracker.client.view.html'
+		});
+		/*state('listTrackers', {
 			url: '/trackers',
 			templateUrl: 'modules/trackers/views/list-trackers.client.view.html'
 		}).
@@ -20,6 +24,6 @@ angular.module('trackers').config(['$stateProvider',
 		state('editTracker', {
 			url: '/trackers/:trackerId/edit',
 			templateUrl: 'modules/trackers/views/edit-tracker.client.view.html'
-		});
+		});*/
 	}
 ]);
