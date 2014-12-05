@@ -4,7 +4,7 @@
 * For details, see http://www.apache.org/licenses/LICENSE-2.0.
 */-->
 
-<section data-ng-controller="HomeController">
+<section data-ng-controller="HeaderController">
 	<!-- Navigation -->
 	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
 		<div class="container">
@@ -20,8 +20,8 @@
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
 					<li>
-						<a id="login" ghr-authentication-area class="page-scroll" href="/#!/signin">Login</a>
-						<form id="loginForm" data-ng-submit="login()" class="credentialsArea signin form-horizontal" autocomplete="off">
+						<a id="login" ng-click="loginClick()" class="page-scroll">Login</a>
+						<form id="loginForm" ng-show="loginOpen" data-ng-submit="login()" class="credentialsArea signin form-horizontal" autocomplete="off">
 							<div class="form-group">
 								<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">
 							</div>
@@ -37,8 +37,8 @@
 						</form>
 					</li>
 					<li>
-						<a id="signup" ghr-authentication-area class="page-scroll">Sign Up</a>
-						<form id="signupForm" data-ng-submit="signup()" class="credentialsArea signin form-horizontal" autocomplete="off">
+						<a id="signup" ng-click="signupClick()" class="page-scroll">Sign Up</a>
+						<form id="signupForm" ng-show="signupOpen" data-ng-submit="signup()" class="credentialsArea signin form-horizontal" autocomplete="off">
 							<div class="form-group">
 								<input type="text" id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="Email">
 							</div>

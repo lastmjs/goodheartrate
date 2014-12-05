@@ -51,7 +51,6 @@ a:focus {
 }
 
 .credentialsArea {
-	visibility: hidden;
 	position: absolute;
 	background: rgba(255,255,255,.3);
 	right: 0px;
