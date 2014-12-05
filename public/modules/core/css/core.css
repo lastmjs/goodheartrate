@@ -57,6 +57,18 @@ a:focus {
 	right: 0px;
 	padding-right: 50px;
 	padding-left: 50px;
+	padding-top: 25px;
+	width:300px;
+}
+
+.form-control {
+	border-radius: 0px;
+}
+
+.btn {
+
+	border-radius: 0px;
+	background: #337ab7;
 }
 
 .loginArea {
