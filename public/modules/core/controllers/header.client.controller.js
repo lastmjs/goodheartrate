@@ -1,10 +1,11 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', 'Authentication',
-	function($scope, Authentication) {
+angular.module('core').controller('HeaderController', ['$scope', '$location', 'Authentication',
+	function($scope, $location, Authentication) {
 		$scope.authentication = Authentication;
 		$scope.loginOpen = false;
 		$scope.signupOpen = false;
+		$scope.currentRoute = $location;
 		
 		$scope.loginButtonClick = function() {
 			$scope.loginOpen = !$scope.loginOpen;

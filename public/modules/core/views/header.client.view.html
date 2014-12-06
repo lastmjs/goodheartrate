@@ -6,7 +6,7 @@
 
 <section data-ng-controller="HeaderController">
 	<!-- Navigation -->
-	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+	<nav class="navbar navbar-custom navbar-fixed-top" role="navigation" ng-class="{'top-nav-collapse': currentRoute.path() !== '/'}">
 		<div class="container">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
