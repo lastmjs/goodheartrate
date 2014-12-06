@@ -19,6 +19,8 @@ exports.signup = function(req, res) {
 	// Init Variables
 	var user = new User(req.body);
 	var message = null;
+	
+	user.provider = 'local';
 
 	// Then save the user 
 	user.save(function(err) {
