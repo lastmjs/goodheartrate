@@ -1,7 +1,8 @@
 'use strict';
 
-angular.module('core').controller('HeaderController', ['$scope', '$location', 'Authentication',
-	function($scope, $location, Authentication) {
+angular.module('core').controller('HeaderController', ['$scope', '$location', '$http', 'Authentication',
+	function($scope, $location, $http, Authentication) {
+		console.log(Authentication);
 		$scope.authentication = Authentication;
 		$scope.loginOpen = false;
 		$scope.signupOpen = false;
@@ -27,8 +28,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', 'A
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
 
+				$scope.loginButtonClick();
+				
 				// And redirect to the index page
-				$location.path('/');
+				$location.path('/tracker');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});
@@ -38,9 +41,11 @@ angular.module('core').controller('HeaderController', ['$scope', '$location', 'A
 			$http.post('/auth/signup', $scope.credentials).success(function(response) {
 				// If successful we assign the response to the global user model
 				$scope.authentication.user = response;
+				
+				$scope.signupButtonClick();
 
 				// And redirect to the index page
-				$location.path('/');
+				$location.path('/tracker');
 			}).error(function(response) {
 				$scope.error = response.message;
 			});

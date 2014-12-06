@@ -12,14 +12,14 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
 					<i class="fa fa-bars"></i>
 				</button>
-				<a class="navbar-brand page-scroll" href="/#!">
+				<a class="navbar-brand page-scroll" href="/">
 					<i class="fa fa-play-circle"></i>  <span class="light">Good</span> Heart Rate
 				</a>
 			</div>
 
 			<div class="navbar-right">
 				<ul class="nav navbar-nav">
-					<li>
+					<li ng-hide="authentication.user">
 						<a id="login" ng-click="loginButtonClick()" class="page-scroll">Login</a>
 						<form id="loginForm" ng-show="loginOpen" data-ng-submit="login()" class="credentialsArea signin form-horizontal" autocomplete="off">
 							<div class="form-group">
@@ -36,7 +36,7 @@
 							</div>
 						</form>
 					</li>
-					<li>
+					<li ng-hide="authentication.user">
 						<a id="signup" ng-click="signupButtonClick()" class="page-scroll">Sign Up</a>
 						<form id="signupForm" ng-show="signupOpen" data-ng-submit="signup()" class="credentialsArea signin form-horizontal" autocomplete="off">
 							<div class="form-group">
@@ -52,6 +52,9 @@
 								<strong data-ng-bind="error"></strong>
 							</div>
 						</form>
+					</li>
+					<li id="loggedInLI" ng-show="authentication.user">
+						<a class="page-scroll" href="/auth/signout">{{authentication.user.username}}</a>
 					</li>
 				</ul>
 			</div>
