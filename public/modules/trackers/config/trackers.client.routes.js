@@ -5,7 +5,7 @@ angular.module('trackers').config(['$stateProvider',
 	function($stateProvider) {
 		// Trackers state routing
 		$stateProvider.
-		state('index', {
+		state('tracker', {
 			url: '/tracker',
 			templateUrl: 'modules/trackers/views/index-tracker.client.view.html'
 		});
