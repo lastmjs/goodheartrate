@@ -15,6 +15,7 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/jquery-ui/themes/vader/*.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -28,7 +29,9 @@ module.exports = {
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/jquery/jquery.min.js',
 				'public/lib/jquery-easing/js/jquery.easing.min.js',
-				'public/lib/grayscale/grayscale.js'
+				'public/lib/grayscale/grayscale.js',
+				'public/lib/chartjs/Chart.min.js',
+				'public/lib/jquery-ui/jquery-ui.min.js'
 			]
 		},
 		css: [

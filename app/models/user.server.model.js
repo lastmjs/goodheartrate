@@ -67,6 +67,12 @@ var UserSchema = new Schema({
 	},
 	resetPasswordExpires: {
 		type: Date
+	},
+	heartRate: {
+		dataPoints: [{
+			date: Date, 
+			bpm: Number
+		}]
 	}
 });
 

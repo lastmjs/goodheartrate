@@ -2,7 +2,6 @@
 
 angular.module('core').controller('HeaderController', ['$scope', '$location', '$http', 'Authentication',
 	function($scope, $location, $http, Authentication) {
-		console.log(Authentication);
 		$scope.authentication = Authentication;
 		$scope.loginOpen = false;
 		$scope.signupOpen = false;
