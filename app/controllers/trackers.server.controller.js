@@ -6,23 +6,35 @@
 var mongoose = require('mongoose'),
 	errorHandler = require('./errors.server.controller'),
 	Tracker = mongoose.model('Tracker'),
-	_ = require('lodash');
+	_ = require('lodash'),
+	User = mongoose.model('User');
 
 /**
  * Create a Tracker
  */
-exports.create = function(req, res) {
+exports.create = function(req, res) {	
 	var tracker = new Tracker(req.body);
-	tracker.user = req.user;
-
-	tracker.save(function(err) {
+	
+	User.findOne({'username': req.params.username}, function(err, user) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {
-			res.jsonp(tracker);
 		}
+		
+		tracker.user = user;
+		
+		console.log(tracker.user);
+
+		tracker.save(function(err) {
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				res.jsonp(tracker);
+			}
+		});	
 	});
 };
 

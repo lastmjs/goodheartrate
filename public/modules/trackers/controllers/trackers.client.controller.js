@@ -5,10 +5,18 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, trackersService) {
 		$scope.authentication = Authentication;
 		$scope.trackers = trackersService.trackers;
+		$scope.trackerObj = {
+			date: undefined,
+			bpm: undefined
+		};
 		
 		// Find a list of Trackers
 		$scope.list = function() {
-			trackersService.getAll();
+			trackersService.getAll($scope.authentication.user.username);
+		};
+		
+		$scope.create = function() {
+			trackersService.create($scope.authentication.user.username, $scope.trackerObj);
 		};
 		
 		/*$('#dateInput').datepicker();

@@ -3,15 +3,15 @@
 		
 		<div class="row">
 			<!--<form id="heartRateForm" data-ng-submit="login()">-->
-			<form id="heartRateForm" data-ng-submit="list()">
+			<form id="heartRateForm" data-ng-submit="create()">
 				<div class="form-group">
 					<div class="col-lg-4 col-lg-offset-4">
-						<input id="dateInput" data-format="yyyy-MM-dd" type="text" name="date" class="form-control" data-ng-model="credentials.username" placeholder="Date">
+						<input id="dateInput" data-format="yyyy-MM-dd" type="text" name="date" class="form-control" data-ng-model="bpmDate" placeholder="Date">
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-lg-4 col-lg-offset-4">
-						<input id="bpmInput" type="number" name="bpm" class="form-control" data-ng-model="credentials.password" placeholder="BPM">
+						<input id="bpmInput" type="number" name="bpm" class="form-control" data-ng-model="bpmBPM" placeholder="BPM">
 					</div>
 				</div>
 				<div class="text-center form-group">
