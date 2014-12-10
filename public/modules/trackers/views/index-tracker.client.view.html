@@ -6,7 +6,7 @@
 			<form id="heartRateForm" data-ng-submit="create()">
 				<div class="form-group">
 					<div class="col-lg-4 col-lg-offset-4">
-						<input id="dateInput" data-format="yyyy-MM-dd" type="text" name="date" class="form-control" data-ng-model="trackerObj.date" placeholder="Date">
+						<input id="dateInput" data-format="yyyy-MM-dd" type="text" name="date" class="form-control" data-ng-model="trackerObj.date" ghr-datepicker placeholder="Date">
 					</div>
 				</div>
 				<div class="form-group">
@@ -25,12 +25,8 @@
 			</form>
 		</div>
 		
-		<div ng-repeat="tracker in trackers">
-			{{tracker.one}}
-		</div>
-		
 		<div class="row">
-			<canvas id="heartChart" width="1000" height="700"></canvas>
+			<canvas id="heartChart" width="900" height="500" ghr-graph></canvas>
 		</div>
 	</div>
 </section>

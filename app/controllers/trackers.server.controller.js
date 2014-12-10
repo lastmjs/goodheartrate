@@ -8,11 +8,46 @@ var mongoose = require('mongoose'),
 	Tracker = mongoose.model('Tracker'),
 	_ = require('lodash'),
 	User = mongoose.model('User');
+	
+/**
+* Create a Tracker
+*/
+exports.create = function(req, res) {	
+	var tracker = new Tracker(req.body);
+	tracker.user = req.user;
+	
+	console.log(req.body);
+	
+	tracker.save(function(err) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(tracker);
+		}
+	});	
+};
 
 /**
- * Create a Tracker
+* Get list of Trackers
+*/
+exports.list = function(req, res) {
+	Tracker.find({user: req.user}).sort('-date').exec(function(err, trackers) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		} else {
+			res.jsonp(trackers);
+		}
+	});
+};
+
+/**
+ * Create a Tracker with username provided in URL
  */
-exports.create = function(req, res) {	
+/*exports.create = function(req, res) {	
 	var tracker = new Tracker(req.body);
 	
 	User.findOne({'username': req.params.username}, function(err, user) {
@@ -36,7 +71,7 @@ exports.create = function(req, res) {
 			}
 		});	
 	});
-};
+};*/
 
 /**
  * Show the current Tracker
@@ -77,24 +112,6 @@ exports.delete = function(req, res) {
 			});
 		} else {
 			res.jsonp(tracker);
-		}
-	});
-};
-
-/**
- * List of Trackers
- */
-exports.list = function(req, res) {
-	
-	console.log(req.params);
-	
-	Tracker.find().sort('-date').exec(function(err, trackers) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(trackers);
 		}
 	});
 };

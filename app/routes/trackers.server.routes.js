@@ -5,8 +5,8 @@ module.exports = function(app) {
 	var trackers = require('../../app/controllers/trackers.server.controller');
 
 	// Trackers Routes
-	app.route('/trackers/:username')
-		.get(trackers.list)
+	app.route('/trackers')
+		.get(users.requiresLogin, trackers.list)
 		.post(users.requiresLogin, trackers.create);
 
 	app.route('/trackers/:trackerId')
