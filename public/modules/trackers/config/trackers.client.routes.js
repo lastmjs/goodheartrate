@@ -7,7 +7,12 @@ angular.module('trackers').config(['$stateProvider',
 		$stateProvider.
 		state('tracker', {
 			url: '/tracker',
-			templateUrl: 'modules/trackers/views/index-tracker.client.view.html'
+			templateUrl: 'modules/trackers/views/index-tracker.client.view.html',
+			resolve: {
+				trackerPromise: ['trackersService', function(trackersService) {
+					return trackersService.getAll();
+				}]
+			}
 		});
 		/*state('listTrackers', {
 			url: '/trackers',

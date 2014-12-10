@@ -7,6 +7,13 @@ angular.module('trackers').directive('ghrGraph', ['trackersService', function(tr
 				// Get context with jQuery - using jQuery's .get() method.
 				var ctx = $(element).get(0).getContext("2d");
 				
+				var trackerArray = trackersService.trackers;
+				var bpmArray = [];
+				
+				for(var i=0; i < trackerArray.length; i++) {
+					bpmArray.push(trackerArray[i].bpm);
+				}
+				
 				var data = {
 					labels: ["January", "February", "March", "April", "May", "June", "July"],
 					datasets: [
@@ -18,7 +25,7 @@ angular.module('trackers').directive('ghrGraph', ['trackersService', function(tr
 							pointStrokeColor: "#fff",
 							pointHighlightFill: "#fff",
 							pointHighlightStroke: "rgba(220,220,220,1)",
-							data: trackersService.trackers
+							data: bpmArray
 							//data: [65, 59, 80, 81, 56, 55, 40]
 						}
 					]
