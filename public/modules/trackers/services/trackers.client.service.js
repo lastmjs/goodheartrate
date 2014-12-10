@@ -1,13 +1,15 @@
 'use strict';
 
-//Trackers service used to communicate Trackers REST endpoints
-angular.module('trackers').factory('Trackers', ['$resource',
-	function($resource) {
-		return $resource('trackers/:trackerId', { trackerId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
+angular.module('trackers').factory('trackersService', ['$http', function($http) {
+	var o = {
+		trackers: []
+	};
+	
+	o.getAll = function(username) {
+		return $http.get('/' + username + '/trackers').success(function(data) {
+			angular.copy(data, o.trackers);
 		});
-	}
-]);
+	};
+	
+	return o;
+}]);

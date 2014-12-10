@@ -1,11 +1,17 @@
 'use strict';
 
 // Trackers controller
-angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'Trackers',
-	function($scope, $stateParams, $location, Authentication, Trackers) {
+angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'trackersService',
+	function($scope, $stateParams, $location, Authentication, trackersService) {
 		$scope.authentication = Authentication;
+		$scope.trackers = trackersService.trackers;
 		
-		$('#dateInput').datepicker();
+		// Find a list of Trackers
+		$scope.list = function() {
+			trackersService.getAll();
+		};
+		
+		/*$('#dateInput').datepicker();
 		
 		// Get context with jQuery - using jQuery's .get() method.
 		var ctx = $("#heartChart").get(0).getContext("2d");
@@ -27,7 +33,7 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 		};
 		
 		// This will get the first returned node in the jQuery collection.
-		var myNewChart = new Chart(ctx).Line(data, {});
+		var myNewChart = new Chart(ctx).Line(data, {});*/
 		
 		/*// Create new Tracker
 		$scope.create = function() {
@@ -73,11 +79,6 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
-		};
-
-		// Find a list of Trackers
-		$scope.find = function() {
-			$scope.trackers = Trackers.query();
 		};
 
 		// Find existing Tracker

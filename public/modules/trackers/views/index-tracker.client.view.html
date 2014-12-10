@@ -2,7 +2,8 @@
 	<div class="text-center">
 		
 		<div class="row">
-			<form id="heartRateForm" data-ng-submit="login()">
+			<!--<form id="heartRateForm" data-ng-submit="login()">-->
+			<form id="heartRateForm" data-ng-submit="list()">
 				<div class="form-group">
 					<div class="col-lg-4 col-lg-offset-4">
 						<input id="dateInput" data-format="yyyy-MM-dd" type="text" name="date" class="form-control" data-ng-model="credentials.username" placeholder="Date">
@@ -22,6 +23,10 @@
 					<strong data-ng-bind="error"></strong>
 				</div>
 			</form>
+		</div>
+		
+		<div ng-repeat="tracker in trackers">
+			{{tracker.one}}
 		</div>
 		
 		<div class="row">

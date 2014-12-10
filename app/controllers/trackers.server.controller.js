@@ -72,8 +72,11 @@ exports.delete = function(req, res) {
 /**
  * List of Trackers
  */
-exports.list = function(req, res) { 
-	Tracker.find().sort('-created').populate('user', 'displayName').exec(function(err, trackers) {
+exports.list = function(req, res) {
+	
+	console.log(req.params);
+	
+	Tracker.find().sort('-date').exec(function(err, trackers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

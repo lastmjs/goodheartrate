@@ -10,15 +10,13 @@ var mongoose = require('mongoose'),
  * Tracker Schema
  */
 var TrackerSchema = new Schema({
-	name: {
-		type: String,
-		default: '',
-		required: 'Please fill Tracker name',
-		trim: true
+	bpm: {
+		type: Number,
+		required: true
 	},
-	created: {
+	date: {
 		type: Date,
-		default: Date.now
+		required: true
 	},
 	user: {
 		type: Schema.ObjectId,
