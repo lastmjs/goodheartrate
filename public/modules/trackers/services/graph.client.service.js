@@ -33,7 +33,7 @@ angular.module('trackers').factory('graphService', ['trackersService', function(
 			]
 		};
 		
-		o.chart = new Chart(o.ctx).Line(o.data, {});
+		o.chart = new Chart(o.ctx).Line(o.data, {responsive: true});
 	};
 	
 	return o;

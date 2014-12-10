@@ -12,7 +12,6 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 		
 		$scope.create = function() {
 			trackersService.create($scope.trackerObj);
-			graphService.initGraph();
 		};
 		
 		$scope.list = function() {
