@@ -33,7 +33,7 @@ exports.create = function(req, res) {
 * Get list of Trackers
 */
 exports.list = function(req, res) {
-	Tracker.find({user: req.user}).sort('-date').exec(function(err, trackers) {
+	Tracker.find({user: req.user}).sort('date').exec(function(err, trackers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

@@ -1,8 +1,8 @@
 'use strict';
 
 // Trackers controller
-angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'trackersService',
-	function($scope, $stateParams, $location, Authentication, trackersService) {
+angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'trackersService', 'graphService',
+	function($scope, $stateParams, $location, Authentication, trackersService, graphService) {
 		$scope.authentication = Authentication;
 		$scope.trackers = trackersService.trackers;
 		$scope.trackerObj = {
@@ -10,10 +10,9 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 			bpm: undefined
 		};
 		
-		
-		
 		$scope.create = function() {
 			trackersService.create($scope.trackerObj);
+			graphService.initGraph();
 		};
 		
 		$scope.list = function() {
