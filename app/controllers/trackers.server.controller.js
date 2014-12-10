@@ -24,8 +24,8 @@ exports.create = function(req, res) {
 		
 		tracker.user = user;
 		
-		console.log(tracker.user);
-
+		console.log(tracker);
+		
 		tracker.save(function(err) {
 			if (err) {
 				return res.status(400).send({
