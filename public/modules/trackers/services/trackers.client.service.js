@@ -37,9 +37,9 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 			datasets: [
 				{
 					label: "My First dataset",
-					fillColor: "rgba(220,220,220,0.2)",
-					strokeColor: "rgba(220,220,220,1)",
-					pointColor: "rgba(220,220,220,1)",
+					fillColor: "rgba(51,122,183,0.2)",
+					strokeColor: "rgba(51,122,183,1)",
+					pointColor: "rgba(51,122,183,1)",
 					pointStrokeColor: "#fff",
 					pointHighlightFill: "#fff",
 					pointHighlightStroke: "rgba(220,220,220,1)",
