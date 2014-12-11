@@ -5,7 +5,7 @@ angular.module('trackers').directive('ghrDatepicker', [
 		return {
 			restrict: 'A',
 			link: function postLink(scope, element, attrs) {
-				$(element).datepicker({ dateFormat: 'yy-mm-dd' });
+				$(element).datepicker({ dateFormat: 'yy-mm-d' });
 				
 				$(element).on('change keyup paste', function() {
 					scope.trackerObj.date = $(element).val();

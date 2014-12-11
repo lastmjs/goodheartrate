@@ -9,6 +9,8 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 		},
 		chartData: {},
 		chartOptions: {
+			scaleFontFamily: 'Ubuntu',
+			scaleFontColor: '#484848',
 			scaleOverride: true,
 			scaleSteps: 20,
 			scaleStepWidth: 5,
@@ -17,12 +19,43 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 	};
 	
 	o.initGraph = function() {
+		var dayNames = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday'
+		];
+		
+		var monthNames = [
+			'Jan',
+			'Feb',
+			'Mar',
+			'Apr',
+			'May',
+			'Jun',
+			'Jul',
+			'Aug',
+			'Sep',
+			'Oct',
+			'Nov',
+			'Dec'
+		];
+		
 		var labelsArray = [];
 		var bpmArray = [];
 		
 		var totalBPM = 0;
 		for(var i=0; i < o.trackers.length; i++) {
-			labelsArray.push(o.trackers[i].date);
+			var indexOfT = o.trackers[i].date.indexOf('T');
+			var strippedDate = o.trackers[i].date.substr(0, indexOfT);
+			var dateSegments = strippedDate.split('-');
+
+			var formattedDate = monthNames[dateSegments[1] - 1] + ' ' + dateSegments[2] + ', ' + dateSegments[0];
+			
+			labelsArray.push(formattedDate);
 			bpmArray.push(o.trackers[i].bpm);
 			
 			totalBPM += o.trackers[i].bpm;
@@ -53,17 +86,7 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 	
 	o.createOrUpdate = function(trackerObj) {
 		return $http.post('/trackers', trackerObj).success(function(data) {
-			
-			for(var i=0; i < o.trackers.length; i++) {
-				if(o.trackers[i]._id === data._id) {
-					o.trackers[i] = data;
-					o.initGraph();
-					return;
-				}
-			}
-			
-			o.trackers.push(data);
-			o.initGraph();
+			o.getAll();
 		});
 	};
 	
