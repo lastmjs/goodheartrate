@@ -8,7 +8,12 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 			bpm: undefined
 		},
 		chartData: {},
-		chartOptions: {}
+		chartOptions: {
+			scaleOverride: true,
+			scaleSteps: 20,
+			scaleStepWidth: 5,
+			scaleStartValue: 0
+		}
 	};
 	
 	o.initGraph = function() {
@@ -36,21 +41,21 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 			]
 		};
 		
-		if(newChartData.datasets[0].data.length > 0) {
+		/*if(newChartData.datasets[0].data.length > 0) {
 			var min = Math.max(newChartData.datasets[0].data);
 			var max = Math.max(newChartData.datasets[0].data);
 			
 			if(min === max) {
 				var opt = {
 					scaleOverride : true,
-					scaleSteps : 3,
+					scaleSteps : 20,
 					scaleStepWidth : 1,
-					scaleStartValue : max - 2	
+					scaleStartValue : max - 10	
 				};
 				
 				angular.copy(opt, o.chartOptions);
 			}
-		}
+		}*/
 		
 		angular.copy(newChartData, o.chartData);
 	};
