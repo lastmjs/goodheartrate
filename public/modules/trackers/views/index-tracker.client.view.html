@@ -28,5 +28,75 @@
 		<div class="row">
 			<canvas linechart data="chartData" options="chartOptions" width="1000" height="500"></canvas>
 		</div>
+		
+		<div class="row" ng-controller="StatsController">
+			<table class="col-lg-2 col-lg-offset-3 currentHeartBeatsPerTable">
+				<tr>
+					<td style="white-space: nowrap;">
+						Current Heart Beats Per -
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Minute:
+					</td>
+					<td>
+						{{bpMinute.val}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Hour:
+					</td>
+					<td>
+						{{bpHour.val}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Day:
+					</td>
+					<td>
+						{{bpDay.val}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Week:
+					</td>
+					<td>
+						{{bpWeek.val}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Month:
+					</td>
+					<td>
+						{{bpMonth.val}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Year:
+					</td>
+					<td>
+						{{bpYear.val}}
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
 </section>

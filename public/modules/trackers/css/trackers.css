@@ -5,3 +5,8 @@ canvas {
 #dateInput {
 	margin-top: 100px;
 }
+
+.currentHeartBeatsPerTable {
+	font-family: Ubuntu;
+	font-weight: bold;
+}
