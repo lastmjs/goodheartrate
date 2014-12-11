@@ -20,10 +20,17 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 		var labelsArray = [];
 		var bpmArray = [];
 		
+		var totalBPM = 0;
 		for(var i=0; i < o.trackers.length; i++) {
 			labelsArray.push(o.trackers[i].date);
 			bpmArray.push(o.trackers[i].bpm);
+			
+			totalBPM += o.trackers[i].bpm;
 		}
+		
+		var averageBPM = totalBPM / o.trackers.length;
+		labelsArray.unshift("Average BPM");
+		bpmArray.unshift(averageBPM);
 		
 		var newChartData = {
 			labels: labelsArray,
@@ -40,22 +47,6 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 				}
 			]
 		};
-		
-		/*if(newChartData.datasets[0].data.length > 0) {
-			var min = Math.max(newChartData.datasets[0].data);
-			var max = Math.max(newChartData.datasets[0].data);
-			
-			if(min === max) {
-				var opt = {
-					scaleOverride : true,
-					scaleSteps : 20,
-					scaleStepWidth : 1,
-					scaleStartValue : max - 10	
-				};
-				
-				angular.copy(opt, o.chartOptions);
-			}
-		}*/
 		
 		angular.copy(newChartData, o.chartData);
 	};
