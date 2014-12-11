@@ -12,17 +12,39 @@ var mongoose = require('mongoose'),
 /**
 * Create a Tracker
 */
-exports.create = function(req, res) {	
-	var tracker = new Tracker(req.body);
-	tracker.user = req.user;
+exports.createOrUpdate = function(req, res) {	
+	var trackerReceived = new Tracker(req.body);
+	trackerReceived.user = req.user;
 	
-	tracker.save(function(err) {
-		if (err) {
+	Tracker.findOne({date: trackerReceived.date}).exec(function(err, tracker) {
+		if(err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
+		}
+		
+		if(tracker) {
+			tracker.bpm = trackerReceived.bpm;
+			
+			tracker.save(function(err) {
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				} else {
+					res.jsonp(tracker);
+				}
+			});
 		} else {
-			res.jsonp(tracker);
+			trackerReceived.save(function(err) {
+				if (err) {
+					return res.status(400).send({
+						message: errorHandler.getErrorMessage(err)
+					});
+				} else {
+					res.jsonp(trackerReceived);
+				}
+			});
 		}
 	});	
 };

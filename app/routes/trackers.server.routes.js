@@ -7,7 +7,7 @@ module.exports = function(app) {
 	// Trackers Routes
 	app.route('/trackers')
 		.get(users.requiresLogin, trackers.list)
-		.post(users.requiresLogin, trackers.create);
+		.post(users.requiresLogin, trackers.createOrUpdate);
 		
 	app.route('/trackers/:date')
 		.get(trackers.getByDate);

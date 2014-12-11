@@ -3,7 +3,7 @@
 		
 		<div class="row">
 			<!--<form id="heartRateForm" data-ng-submit="login()">-->
-			<form id="heartRateForm" data-ng-submit="create();initGraph()">
+			<form id="heartRateForm" data-ng-submit="createOrUpdate()">
 				<div class="form-group">
 					<div class="col-lg-4 col-lg-offset-4">
 						<input id="dateInput" data-format="yyyy-MM-dd" type="text" name="date" class="form-control" data-ng-model="trackerObj.date" ghr-datepicker placeholder="Date">
@@ -26,7 +26,7 @@
 		</div>
 		
 		<div class="row">
-			<canvas linechart data="chartData" options="chartOptions" responsive="true" width="900" height="500" ghr-graph></canvas>
+			<canvas linechart data="chartData" options="chartOptions" responsive="true" width="900" height="500"></canvas>
 		</div>
 	</div>
 </section>
