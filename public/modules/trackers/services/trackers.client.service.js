@@ -36,6 +36,22 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 			]
 		};
 		
+		if(newChartData.datasets[0].data.length > 0) {
+			var min = Math.max(newChartData.datasets[0].data);
+			var max = Math.max(newChartData.datasets[0].data);
+			
+			if(min === max) {
+				var opt = {
+					scaleOverride : true,
+					scaleSteps : 3,
+					scaleStepWidth : 1,
+					scaleStartValue : max - 2	
+				};
+				
+				angular.copy(opt, o.chartOptions);
+			}
+		}
+		
 		angular.copy(newChartData, o.chartData);
 	};
 	
