@@ -16,7 +16,8 @@ var TrackerSchema = new Schema({
 	},
 	date: {
 		type: Date,
-		required: true
+		required: true,
+		unique: true
 	},
 	user: {
 		type: Schema.ObjectId,

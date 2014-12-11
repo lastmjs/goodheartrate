@@ -8,12 +8,15 @@ module.exports = function(app) {
 	app.route('/trackers')
 		.get(users.requiresLogin, trackers.list)
 		.post(users.requiresLogin, trackers.create);
+		
+	app.route('/trackers/:date')
+		.get(trackers.getByDate);
 
-	app.route('/trackers/:trackerId')
+	/*app.route('/trackers/:trackerId')
 		.get(trackers.read)
 		.put(users.requiresLogin, trackers.hasAuthorization, trackers.update)
 		.delete(users.requiresLogin, trackers.hasAuthorization, trackers.delete);
 
 	// Finish by binding the Tracker middleware
-	app.param('trackerId', trackers.trackerByID);
+	app.param('trackerId', trackers.trackerByID);*/
 };

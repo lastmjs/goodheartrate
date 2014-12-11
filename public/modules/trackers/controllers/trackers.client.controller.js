@@ -5,12 +5,9 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 	function($scope, $stateParams, $location, Authentication, trackersService) {
 		$scope.authentication = Authentication;
 		$scope.trackers = trackersService.trackers;
-		$scope.trackerObj = {
-			date: undefined,
-			bpm: undefined
-		};
-		$scope.chartData = {};
-		$scope.chartOptions = {};
+		$scope.trackerObj = trackersService.trackerObj;
+		$scope.chartData = trackersService.chartData;
+		$scope.chartOptions = trackersService.chartOptions;
 		
 		$scope.initGraph = function() {
 			var labelsArray = [];
@@ -43,9 +40,13 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 			trackersService.create($scope.trackerObj);
 		};
 		
-		$scope.list = function() {
-			trackersService.getAll();
+		$scope.getByDate = function() {
+			trackersService.getByDate($scope.trackerObj.date);
 		};
+		
+		/*$scope.list = function() {
+			trackersService.getAll();
+		};*/
 		
 		/*// Create new Tracker
 		$scope.create = function() {

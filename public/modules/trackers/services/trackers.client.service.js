@@ -2,11 +2,17 @@
 
 angular.module('trackers').factory('trackersService', ['$http', function($http) {
 	var o = {
-		trackers: []
+		trackers: [],
+		trackerObj: {
+			date: undefined,
+			bpm: undefined
+		},
+		chartData: {},
+		chartOptions: {}
 	};
 	
-	o.create = function(data) {
-		return $http.post('/trackers', data).success(function(data) {
+	o.create = function(trackerObj) {
+		return $http.post('/trackers', trackerObj).success(function(data) {
 			o.trackers.push(data);
 		});
 	};
@@ -14,6 +20,12 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 	o.getAll = function() {
 		return $http.get('/trackers').success(function(data) {
 			angular.copy(data, o.trackers);
+		});
+	};
+	
+	o.getByDate = function(date) {
+		return $http.get('/trackers/' + date).success(function(data) {
+			angular.copy(data, o.trackerObj);
 		});
 	};
 	

@@ -16,8 +16,6 @@ exports.create = function(req, res) {
 	var tracker = new Tracker(req.body);
 	tracker.user = req.user;
 	
-	console.log(req.body);
-	
 	tracker.save(function(err) {
 		if (err) {
 			return res.status(400).send({
@@ -38,9 +36,24 @@ exports.list = function(req, res) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
 			});
-		} else {
-			res.jsonp(trackers);
 		}
+		
+		res.jsonp(trackers);
+	});
+};
+
+exports.getByDate = function(req, res) {
+	Tracker.findOne({date: req.params.date}).exec(function(err, tracker) {
+		if(err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		}
+		
+		tracker = tracker.toObject();
+		tracker.date = tracker.date.getFullYear().toString() + '-' +  (tracker.date.getMonth() + 1).toString() + '-' + tracker.date.getUTCDate().toString();
+		
+		res.jsonp(tracker);
 	});
 };
 
