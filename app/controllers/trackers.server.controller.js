@@ -50,8 +50,10 @@ exports.getByDate = function(req, res) {
 			});
 		}
 		
-		tracker = tracker.toObject();
-		tracker.date = tracker.date.getFullYear().toString() + '-' +  (tracker.date.getMonth() + 1).toString() + '-' + tracker.date.getUTCDate().toString();
+		if(tracker) {
+			tracker = tracker.toObject();
+			tracker.date = tracker.date.getFullYear().toString() + '-' +  (tracker.date.getMonth() + 1).toString() + '-' + tracker.date.getUTCDate().toString();
+		}
 		
 		res.jsonp(tracker);
 	});

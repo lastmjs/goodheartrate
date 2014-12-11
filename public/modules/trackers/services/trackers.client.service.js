@@ -25,7 +25,12 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 	
 	o.getByDate = function(date) {
 		return $http.get('/trackers/' + date).success(function(data) {
-			angular.copy(data, o.trackerObj);
+			if(data !== 'null') {
+				angular.copy(data, o.trackerObj);
+			} else {
+				data = {date: o.trackerObj.date, bpm: undefined};
+				angular.copy(data, o.trackerObj);
+			}
 		});
 	};
 	
