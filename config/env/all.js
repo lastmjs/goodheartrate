@@ -27,11 +27,12 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/jquery/jquery.min.js',
+				'public/lib/jquery/dist/jquery.min.js',
 				'public/lib/jquery-easing/js/jquery.easing.min.js',
 				'public/lib/grayscale/grayscale.js',
-				'public/lib/chartjs/Chart.min.js',
-				'public/lib/jquery-ui/jquery-ui.min.js'
+				'public/lib/jquery-ui/jquery-ui.min.js',
+				'public/lib/nnnick-chartjs/Chart.min.js',
+				'public/lib/angles-without-dependancies/angles.js'
 			]
 		},
 		css: [

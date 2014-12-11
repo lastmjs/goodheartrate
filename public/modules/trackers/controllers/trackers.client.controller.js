@@ -1,14 +1,43 @@
 'use strict';
 
 // Trackers controller
-angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'trackersService', 'graphService',
-	function($scope, $stateParams, $location, Authentication, trackersService, graphService) {
+angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'trackersService',
+	function($scope, $stateParams, $location, Authentication, trackersService) {
 		$scope.authentication = Authentication;
 		$scope.trackers = trackersService.trackers;
 		$scope.trackerObj = {
 			date: undefined,
 			bpm: undefined
 		};
+		$scope.chartData = {};
+		$scope.chartOptions = {};
+		
+		$scope.initGraph = function() {
+			var labelsArray = [];
+			var bpmArray = [];
+			
+			for(var i=0; i < $scope.trackers.length; i++) {
+				labelsArray.push($scope.trackers[i].date);
+				bpmArray.push($scope.trackers[i].bpm);
+			}
+			
+			$scope.chartData = {
+				labels: labelsArray,
+				datasets: [
+					{
+						label: "My First dataset",
+						fillColor: "rgba(220,220,220,0.2)",
+						strokeColor: "rgba(220,220,220,1)",
+						pointColor: "rgba(220,220,220,1)",
+						pointStrokeColor: "#fff",
+						pointHighlightFill: "#fff",
+						pointHighlightStroke: "rgba(220,220,220,1)",
+						data: bpmArray
+					}
+				]
+			};
+		};
+		$scope.initGraph();
 		
 		$scope.create = function() {
 			trackersService.create($scope.trackerObj);
