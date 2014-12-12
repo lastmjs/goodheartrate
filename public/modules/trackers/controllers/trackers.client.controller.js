@@ -32,12 +32,17 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 		} else {
 			$scope.createOrUpdate = function() {
 				trackersService.createOrUpdateDemo($scope.trackerObj);
+				$scope.getAll();
 			};
 			
 			$scope.getAll = function() {
 				statsService.calculateBeats($scope.trackers);
 				statsService.calculateBeatsSaved({startingHeartRate: 70});
 				trackersService.initGraph();
+			};
+			
+			$scope.getByDate = function() {
+				trackersService.getByDateDemo($scope.trackerObj.date);
 			};
 			
 			trackersService.getAllDemo();

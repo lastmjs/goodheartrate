@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackers').factory('trackersService', ['$http', '$location', function($http, $location) {
+angular.module('trackers').factory('trackersService', ['$http', '$rootScope', function($http, $rootScope) {
 	var o = {
 		trackers: [],
 		trackerObj: {
@@ -112,13 +112,30 @@ angular.module('trackers').factory('trackersService', ['$http', '$location', fun
 	};
 	
 	o.createOrUpdateDemo = function(trackerObj) {
-		var index = o.trackers.indexOf(trackerObj);
 		
-		if(index === -1) {
-			o.trackers.push(trackerObj);
-		} else {
-			o.trackers[index] = trackerObj;
+		for(var i=0; i < o.trackers.length; i++) {
+			if(o.trackers[i].date === trackerObj.date) {
+				angular.copy(trackerObj, o.trackers[i]);
+				return;
+			}
 		}
+		
+		o.trackers.push(trackerObj);
+		
+		o.trackers.sort(function(a, b) {
+			var aDate = Date.parse(a);
+			var bDate = Date.parse(b);
+			
+			if(aDate < bDate) {
+				return -1;
+			}
+			
+			if(aDate > bDate) {
+				return 1;
+			}
+			
+			return 0;
+		});
 	};
 	
 	o.getAllDemo = function() {
@@ -249,14 +266,12 @@ angular.module('trackers').factory('trackersService', ['$http', '$location', fun
 	};
 	
 	o.getByDateDemo = function(date) {
-		return $http.get('/trackers/' + date).success(function(data) {
-			if(data !== 'null') {
-				angular.copy(data, o.trackerObj);
-			} else {
-				data = {date: o.trackerObj.date, bpm: undefined};
-				angular.copy(data, o.trackerObj);
+		for(var i=0; i < o.trackers.length; i++) {
+			if(o.trackers[i].date === date) {
+				$rootScope.$apply(angular.copy(o.trackers[i], o.trackerObj));
+				break;
 			}
-		});
+		}
 	};
 	
 	return o;
