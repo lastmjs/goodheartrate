@@ -10,3 +10,11 @@ canvas {
 	font-family: Ubuntu;
 	font-weight: bold;
 }
+
+.noBold {
+	font-weight: normal;
+}
+
+.statRow {
+	margin-top: 15px;
+}

@@ -16,6 +16,43 @@ exports.createOrUpdate = function(req, res) {
 	var trackerReceived = new Tracker(req.body);
 	trackerReceived.user = req.user;
 	
+	var setUserStartBPM = function(count) {
+		if(count <= 7) {
+			Tracker.find({}, function(err, trackers) {
+				if (err) {
+					return; //TODO what should I do for this error?
+				}
+				
+				var totalBPM = 0;
+				for(var i=0; i < trackers.length; i++) {
+					totalBPM += trackers[i].bpm;
+				}
+				
+				var startingBPM = totalBPM / trackers.length;
+				
+				User.findOne({_id: req.user._id}, function(err, user) {
+					user.startingHeartRate = startingBPM;
+					
+					user.save(function(err) {
+						if(err) {
+							return; //TODO what do I do with this error?
+						}
+					});
+				});
+				
+				/*var userModel = new User(req.user);
+				var userObj = userModel.toObject();
+				
+				userModel.startingHeartRate = startingBPM;
+				userModel.save(function(err) {
+					if(err) {
+						return; //TODO what to do for this error?
+					}
+				});*/
+			});
+		}
+	};	
+	
 	Tracker.findOne({date: trackerReceived.date}).exec(function(err, tracker) {
 		if(err) {
 			return res.status(400).send({
@@ -33,6 +70,14 @@ exports.createOrUpdate = function(req, res) {
 					});
 				} else {
 					res.jsonp(tracker);
+					
+					Tracker.count({}, function(err, count) {
+						if(err) {
+							return; //TODO what kind of error should be thrown here?
+						}
+						
+						setUserStartBPM(count);
+					});
 				}
 			});
 		} else {
@@ -43,6 +88,14 @@ exports.createOrUpdate = function(req, res) {
 					});
 				} else {
 					res.jsonp(trackerReceived);
+					
+					Tracker.count({}, function(err, count) {
+						if(err) {
+							return; //TODO what kind of error should be thrown here?
+						}
+						
+						setUserStartBPM(count);
+					});
 				}
 			});
 		}
@@ -65,7 +118,7 @@ exports.list = function(req, res) {
 };
 
 exports.getByDate = function(req, res) {
-	Tracker.findOne({date: req.params.date}).exec(function(err, tracker) {
+	Tracker.findOne({date: req.params.date, user: req.user}).exec(function(err, tracker) {
 		if(err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

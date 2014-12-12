@@ -29,8 +29,8 @@
 			<canvas linechart data="chartData" options="chartOptions" width="1000" height="500"></canvas>
 		</div>
 		
-		<div class="row" ng-controller="StatsController">
-			<table class="col-lg-2 col-lg-offset-3 currentHeartBeatsPerTable">
+		<div class="row statRow" ng-controller="StatsController">
+			<table class="col-lg-1 col-lg-offset-3 currentHeartBeatsPerTable">
 				<tr>
 					<td style="white-space: nowrap;">
 						Current Heart Beats Per -
@@ -42,7 +42,7 @@
 					<td>
 						Minute:
 					</td>
-					<td>
+					<td class="noBold">
 						{{bpMinute.val}}
 					</td>
 				</tr>
@@ -52,7 +52,7 @@
 					<td>
 						Hour:
 					</td>
-					<td>
+					<td class="noBold">
 						{{bpHour.val | number: 0}}
 					</td>
 				</tr>
@@ -62,7 +62,7 @@
 					<td>
 						Day:
 					</td>
-					<td>
+					<td class="noBold">
 						{{bpDay.val | number: 0}}
 					</td>
 				</tr>
@@ -72,7 +72,7 @@
 					<td>
 						Week:
 					</td>
-					<td>
+					<td class="noBold">
 						{{bpWeek.val | number: 0}}
 					</td>
 				</tr>
@@ -82,7 +82,7 @@
 					<td>
 						Month:
 					</td>
-					<td>
+					<td class="noBold">
 						{{bpMonth.val | number: 0}}
 					</td>
 				</tr>
@@ -92,7 +92,75 @@
 					<td>
 						Year:
 					</td>
+					<td class="noBold">
+						{{bpYear.val | number: 0}}
+					</td>
+				</tr>
+			</table>
+			
+			<table class="col-lg-1 col-lg-offset-1 currentHeartBeatsPerTable">
+				<tr>
+					<td style="white-space: nowrap;">
+						Heart Beats Saved Per -
+					</td>
+				</tr>
+				<tr>
 					<td>
+					</td>
+					<td>
+						Minute:
+					</td>
+					<td class="noBold">
+						{{bpMinute.val}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Hour:
+					</td>
+					<td class="noBold">
+						{{bpHour.val | number: 0}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Day:
+					</td>
+					<td class="noBold">
+						{{bpDay.val | number: 0}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Week:
+					</td>
+					<td class="noBold">
+						{{bpWeek.val | number: 0}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Month:
+					</td>
+					<td class="noBold">
+						{{bpMonth.val | number: 0}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+					</td>
+					<td>
+						Year:
+					</td>
+					<td class="noBold">
 						{{bpYear.val | number: 0}}
 					</td>
 				</tr>
