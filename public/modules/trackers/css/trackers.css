@@ -18,3 +18,11 @@ canvas {
 .statRow {
 	margin-top: 15px;
 }
+
+#bpmInput {
+	margin-top: 10px;
+}
+
+#submitButton {
+	margin-top: 10px;
+}
