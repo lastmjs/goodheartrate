@@ -50,7 +50,13 @@ angular.module('trackers').factory('trackersService', ['$http', '$location', fun
 		var totalBPM = 0;
 		for(var i=0; i < o.trackers.length; i++) {
 			var indexOfT = o.trackers[i].date.indexOf('T');
-			var strippedDate = o.trackers[i].date.substr(0, indexOfT);
+			var strippedDate = undefined;
+			if(indexOfT !== -1) {
+				strippedDate = o.trackers[i].date.substr(0, indexOfT);
+			} else {
+				strippedDate = o.trackers[i].date;
+			}
+			
 			var dateSegments = strippedDate.split('-');
 
 			var formattedDate = monthNames[dateSegments[1] - 1] + ' ' + dateSegments[2] + ', ' + dateSegments[0];
@@ -116,7 +122,7 @@ angular.module('trackers').factory('trackersService', ['$http', '$location', fun
 	};
 	
 	o.getAllDemo = function() {
-		o.trackers = [
+		var tempTrackers = [
 			{
 				date: '2014-12-1',
 				bpm: 70
@@ -124,8 +130,122 @@ angular.module('trackers').factory('trackersService', ['$http', '$location', fun
 			{
 				date: '2014-12-2',
 				bpm: 70
+			},
+			{
+				date: '2014-12-3',
+				bpm: 70
+			},
+			{
+				date: '2014-12-4',
+				bpm: 69
+			},
+			{
+				date: '2014-12-5',
+				bpm: 69
+			},
+			{
+				date: '2014-12-6',
+				bpm: 68
+			},
+			{
+				date: '2014-12-7',
+				bpm: 67
+			},
+			{
+				date: '2014-12-8',
+				bpm: 67
+			},
+			{
+				date: '2014-12-9',
+				bpm: 67
+			},
+			{
+				date: '2014-12-10',
+				bpm: 65
+			},
+			{
+				date: '2014-12-11',
+				bpm: 65
+			},
+			{
+				date: '2014-12-12',
+				bpm: 64
+			},
+			{
+				date: '2014-12-13',
+				bpm: 63
+			},
+			{
+				date: '2014-12-14',
+				bpm: 63
+			},
+			{
+				date: '2014-12-15',
+				bpm: 63
+			},
+			{
+				date: '2014-12-16',
+				bpm: 63
+			},
+			{
+				date: '2014-12-17',
+				bpm: 60
+			},
+			{
+				date: '2014-12-18',
+				bpm: 60
+			},
+			{
+				date: '2014-12-19',
+				bpm: 60
+			},
+			{
+				date: '2014-12-20',
+				bpm: 60
+			},
+			{
+				date: '2014-12-21',
+				bpm: 59
+			},
+			{
+				date: '2014-12-22',
+				bpm: 58
+			},
+			{
+				date: '2014-12-23',
+				bpm: 57
+			},
+			{
+				date: '2014-12-24',
+				bpm: 57
+			},
+			{
+				date: '2014-12-25',
+				bpm: 56
+			},
+			{
+				date: '2014-12-26',
+				bpm: 56
+			},
+			{
+				date: '2014-12-27',
+				bpm: 55
+			},
+			{
+				date: '2014-12-28',
+				bpm: 55
+			},
+			{
+				date: '2014-12-29',
+				bpm: 55
+			},
+			{
+				date: '2014-12-30',
+				bpm: 54
 			}
 		];
+		
+		angular.copy(tempTrackers, o.trackers);
 	};
 	
 	o.getByDateDemo = function(date) {
