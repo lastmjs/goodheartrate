@@ -18,16 +18,18 @@ angular.module('trackers').factory('statsService', ['$http', function($http, tra
 	
 	o.calculateBeats = function(trackers) {
 		var totalBPM = 0;
+		var count = 0;
 		
-		for(var i=trackers.length-1; i > trackers.length-8; i--) {
+		for(var i=trackers.length - 1; i > trackers.length-7; i--) {
 			if(trackers[i]) {
 				totalBPM += trackers[i].bpm;
+				count++;
 			} else {
 				break;
 			}
 		}
 		
-		angular.copy({val: ~~(totalBPM / trackers.length)}, o.bpMinute);
+		angular.copy({val: ~~(totalBPM / count)}, o.bpMinute);
 		angular.copy({val: o.bpMinute.val * 60}, o.bpHour);
 		angular.copy({val: o.bpMinute.val * 1440}, o.bpDay);
 		angular.copy({val: o.bpMinute.val * 10080}, o.bpWeek);
