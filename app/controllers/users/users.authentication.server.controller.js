@@ -17,6 +17,9 @@ exports.userByID = function(req, res) {
 			});
 		}
 		
+		user.password = undefined;
+		user.salt = undefined;
+		
 		res.json(user);
 	});
 };

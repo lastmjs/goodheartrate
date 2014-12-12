@@ -53,7 +53,7 @@ exports.createOrUpdate = function(req, res) {
 		}
 	};	
 	
-	Tracker.findOne({date: trackerReceived.date}).exec(function(err, tracker) {
+	Tracker.findOne({date: trackerReceived.date, user: req.user._id}).exec(function(err, tracker) {
 		if(err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -106,7 +106,7 @@ exports.createOrUpdate = function(req, res) {
 * Get list of Trackers
 */
 exports.list = function(req, res) {
-	Tracker.find({user: req.user}).sort('date').exec(function(err, trackers) {
+	Tracker.find({user: req.user._id}).sort('date').exec(function(err, trackers) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -118,7 +118,7 @@ exports.list = function(req, res) {
 };
 
 exports.getByDate = function(req, res) {
-	Tracker.findOne({date: req.params.date, user: req.user}).exec(function(err, tracker) {
+	Tracker.findOne({date: req.params.date, user: req.user._id}).exec(function(err, tracker) {
 		if(err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

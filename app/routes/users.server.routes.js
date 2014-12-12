@@ -27,5 +27,5 @@ module.exports = function(app) {
 
 	// Finish by binding the user middleware
 	app.route('/users/:id').get(users.userByID);
-	//app.param('userId', users.userByID);
+	app.param('userId', users.userByID);
 };
