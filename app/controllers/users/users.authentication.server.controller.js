@@ -8,6 +8,18 @@ var _ = require('lodash'),
 	mongoose = require('mongoose'),
 	passport = require('passport'),
 	User = mongoose.model('User');
+	
+exports.userByID = function(req, res) {
+	User.findOne({_id: req.params.id}).exec(function(err, user) {
+		if (err) {
+			return res.status(400).send({
+				message: errorHandler.getErrorMessage(err)
+			});
+		}
+		
+		res.json(user);
+	});
+};
 
 /**
  * Signup

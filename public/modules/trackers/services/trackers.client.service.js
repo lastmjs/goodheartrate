@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackers').factory('trackersService', ['$http', 'Authentication', function($http, Authentication) {
+angular.module('trackers').factory('trackersService', ['$http', function($http) {
 	var o = {
 		trackers: [],
 		trackerObj: {
@@ -85,16 +85,12 @@ angular.module('trackers').factory('trackersService', ['$http', 'Authentication'
 	};
 	
 	o.createOrUpdate = function(trackerObj) {
-		return $http.post('/trackers', trackerObj).success(function(data) {
-			o.getAll();
-		});
+		return $http.post('/trackers', trackerObj);
 	};
 	
 	o.getAll = function() {
 		return $http.get('/trackers').success(function(data) {
 			angular.copy(data, o.trackers);
-			Authentication.fetchUser();
-			o.initGraph();
 		});
 	};
 	

@@ -12,6 +12,9 @@ angular.module('trackers').config(['$stateProvider',
 				trackerPromise: ['trackersService', function(trackersService) {
 					return trackersService.getAll();
 				}]
+				/*trackerPromise: ['trackersService', function(trackersService) {
+					return trackersService.getAll();
+				}]*/
 			}
 		});
 		/*state('listTrackers', {

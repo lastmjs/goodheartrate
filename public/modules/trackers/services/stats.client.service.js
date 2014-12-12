@@ -1,35 +1,49 @@
 'use strict';
 
-angular.module('trackers').factory('statsService', ['$http', 'trackersService', function($http, trackersService) {
+angular.module('trackers').factory('statsService', ['$http', function($http, trackersService, Authentication) {
 	var o = {
-		trackers: trackersService.trackers,
 		bpMinute: {val: 0},
 		bpHour: {val: 0},
 		bpDay: {val: 0},
 		bpWeek: {val: 0},
 		bpMonth: {val: 0},
-		bpYear: {val: 0}
+		bpYear: {val: 0},
+		bspMinute: {val: 0},
+		bspHour: {val: 0},
+		bspDay: {val: 0},
+		bspWeek: {val: 0},
+		bspMonth: {val: 0},
+		bspYear: {val: 0}
 	};
 	
-	o.calculateBeats = function() {
+	o.calculateBeats = function(trackers) {
 		var totalBPM = 0;
 		
-		for(var i=o.trackers.length-1; i > o.trackers.length-8; i--) {
-			if(o.trackers[i]) {
-				totalBPM += o.trackers[i].bpm;
+		for(var i=trackers.length-1; i > trackers.length-8; i--) {
+			if(trackers[i]) {
+				totalBPM += trackers[i].bpm;
 			} else {
 				break;
 			}
 		}
 		
-		//var temp = totalBPM / 7;
-		
-		angular.copy({val: ~~(totalBPM / o.trackers.length)}, o.bpMinute);
+		angular.copy({val: ~~(totalBPM / trackers.length)}, o.bpMinute);
 		angular.copy({val: o.bpMinute.val * 60}, o.bpHour);
-		angular.copy({val: o.bpHour.val * 24}, o.bpDay);
-		angular.copy({val: o.bpDay.val * 7}, o.bpWeek);
-		angular.copy({val: o.bpDay.val * 30}, o.bpMonth);
-		angular.copy({val: o.bpDay.val * 365}, o.bpYear);
+		angular.copy({val: o.bpMinute.val * 1440}, o.bpDay);
+		angular.copy({val: o.bpMinute.val * 10080}, o.bpWeek);
+		angular.copy({val: o.bpMinute.val * 43200}, o.bpMonth);
+		angular.copy({val: o.bpMinute.val * 525600}, o.bpYear);
+	};
+	
+	o.calculateBeatsSaved = function(user) {
+		var differencePerMinute = ~~Math.abs(o.bpMinute.val - user.startingHeartRate);
+		
+		angular.copy({val: differencePerMinute}, o.bspMinute);
+		angular.copy({val: differencePerMinute * 60}, o.bspHour);
+		angular.copy({val: differencePerMinute * 1440}, o.bspDay);
+		angular.copy({val: differencePerMinute * 10080}, o.bspWeek);
+		angular.copy({val: differencePerMinute * 43200}, o.bspMonth);
+		angular.copy({val: differencePerMinute * 525600}, o.bspYear);
 	};
 	
 	return o;
