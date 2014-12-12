@@ -9,25 +9,39 @@ angular.module('trackers').controller('TrackersController', ['$scope', '$statePa
 		$scope.chartData = trackersService.chartData;
 		$scope.chartOptions = trackersService.chartOptions;
 		
-		$scope.createOrUpdate = function() {
-			trackersService.createOrUpdate($scope.trackerObj).then(function() {
-				$scope.getAll();
-			});
-		};
-		
-		$scope.getAll = function() {
-			trackersService.getAll().then(function() {
-				Authentication.fetchUser().then(function() {
-					statsService.calculateBeats($scope.trackers);
-					statsService.calculateBeatsSaved($scope.authentication.user);
-					trackersService.initGraph();
+		if($scope.authentication.user) {
+			$scope.createOrUpdate = function() {
+				trackersService.createOrUpdate($scope.trackerObj).then(function() {
+					$scope.getAll();
 				});
-			});
-		};
-		
-		$scope.getByDate = function() {
-			trackersService.getByDate($scope.trackerObj.date);
-		};
+			};
+			
+			$scope.getAll = function() {
+				trackersService.getAll().then(function() {
+					Authentication.fetchUser().then(function() {
+						statsService.calculateBeats($scope.trackers);
+						statsService.calculateBeatsSaved($scope.authentication.user);
+						trackersService.initGraph();
+					});
+				});
+			};
+			
+			$scope.getByDate = function() {
+				trackersService.getByDate($scope.trackerObj.date);
+			};
+		} else {
+			$scope.createOrUpdate = function() {
+				trackersService.createOrUpdateDemo($scope.trackerObj);
+			};
+			
+			$scope.getAll = function() {
+				statsService.calculateBeats($scope.trackers);
+				statsService.calculateBeatsSaved({startingHeartRate: 70});
+				trackersService.initGraph();
+			};
+			
+			trackersService.getAllDemo();
+		}
 		
 		$scope.getAll();
 		

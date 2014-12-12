@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackers').factory('statsService', ['$http', function($http, trackersService, Authentication) {
+angular.module('trackers').factory('statsService', ['$http', function($http) {
 	var o = {
 		bpMinute: {val: 0},
 		bpHour: {val: 0},

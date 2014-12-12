@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trackers').factory('trackersService', ['$http', function($http) {
+angular.module('trackers').factory('trackersService', ['$http', '$location', function($http, $location) {
 	var o = {
 		trackers: [],
 		trackerObj: {
@@ -95,6 +95,40 @@ angular.module('trackers').factory('trackersService', ['$http', function($http) 
 	};
 	
 	o.getByDate = function(date) {
+		return $http.get('/trackers/' + date).success(function(data) {
+			if(data !== 'null') {
+				angular.copy(data, o.trackerObj);
+			} else {
+				data = {date: o.trackerObj.date, bpm: undefined};
+				angular.copy(data, o.trackerObj);
+			}
+		});
+	};
+	
+	o.createOrUpdateDemo = function(trackerObj) {
+		var index = o.trackers.indexOf(trackerObj);
+		
+		if(index === -1) {
+			o.trackers.push(trackerObj);
+		} else {
+			o.trackers[index] = trackerObj;
+		}
+	};
+	
+	o.getAllDemo = function() {
+		o.trackers = [
+			{
+				date: '2014-12-1',
+				bpm: 70
+			},
+			{
+				date: '2014-12-2',
+				bpm: 70
+			}
+		];
+	};
+	
+	o.getByDateDemo = function(date) {
 		return $http.get('/trackers/' + date).success(function(data) {
 			if(data !== 'null') {
 				angular.copy(data, o.trackerObj);
