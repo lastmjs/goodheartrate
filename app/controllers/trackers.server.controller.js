@@ -30,7 +30,16 @@ exports.createOrUpdate = function(req, res) {
 				
 				var startingBPM = totalBPM / trackers.length;
 				
-				User.findOne({_id: req.user._id}, function(err, user) {
+				User.update({_id: req.user._id}, {startingHeartRate: startingBPM}, function(err) {
+					if(err) {
+						return; //TODO what do I do with this error?
+					}
+				});
+				
+				/*User.findOne({_id: req.user._id}, function(err, user) {
+					
+					
+					
 					user.startingHeartRate = startingBPM;
 					
 					user.save(function(err) {
@@ -38,7 +47,7 @@ exports.createOrUpdate = function(req, res) {
 							return; //TODO what do I do with this error?
 						}
 					});
-				});
+				});*/
 				
 				/*var userModel = new User(req.user);
 				var userObj = userModel.toObject();
