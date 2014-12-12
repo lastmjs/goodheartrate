@@ -1,8 +1,8 @@
 'use strict';
 
 // Trackers controller
-angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', '$location', 'Authentication', 'trackersService', 'statsService',
-	function($scope, $stateParams, $location, Authentication, trackersService, statsService) {
+angular.module('trackers').controller('TrackersController', ['$scope', '$stateParams', 'Authentication', 'trackersService', 'statsService',
+	function($scope, $stateParams, Authentication, trackersService, statsService) {
 		$scope.authentication = Authentication;
 		$scope.trackers = trackersService.trackers;
 		$scope.trackerObj = trackersService.trackerObj;

@@ -121,10 +121,9 @@ angular.module('trackers').factory('trackersService', ['$http', '$rootScope', fu
 		}
 		
 		o.trackers.push(trackerObj);
-		
 		o.trackers.sort(function(a, b) {
-			var aDate = Date.parse(a);
-			var bDate = Date.parse(b);
+			var aDate = Date.parse(a.date);
+			var bDate = Date.parse(b.date);
 			
 			if(aDate < bDate) {
 				return -1;
@@ -269,9 +268,12 @@ angular.module('trackers').factory('trackersService', ['$http', '$rootScope', fu
 		for(var i=0; i < o.trackers.length; i++) {
 			if(o.trackers[i].date === date) {
 				$rootScope.$apply(angular.copy(o.trackers[i], o.trackerObj));
-				break;
+				return;
 			}
 		}
+		
+		var data = {date: date, bpm: undefined};
+		$rootScope.$apply(angular.copy(data, o.trackerObj));
 	};
 	
 	return o;
