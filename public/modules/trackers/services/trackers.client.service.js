@@ -115,12 +115,15 @@ angular.module('trackers').factory('trackersService', ['$http', '$rootScope', fu
 		
 		for(var i=0; i < o.trackers.length; i++) {
 			if(o.trackers[i].date === trackerObj.date) {
-				angular.copy(trackerObj, o.trackers[i]);
+				if(trackerObj !== o.trackers[i]) {
+					angular.copy({date: trackerObj.date, bpm: trackerObj.bpm}, o.trackers[i]);
+				}
+				
 				return;
 			}
 		}
 		
-		o.trackers.push(trackerObj);
+		o.trackers.push({date: trackerObj.date, bpm: trackerObj.bpm});
 		o.trackers.sort(function(a, b) {
 			var aDate = Date.parse(a.date);
 			var bDate = Date.parse(b.date);
@@ -267,7 +270,10 @@ angular.module('trackers').factory('trackersService', ['$http', '$rootScope', fu
 	o.getByDateDemo = function(date) {
 		for(var i=0; i < o.trackers.length; i++) {
 			if(o.trackers[i].date === date) {
-				$rootScope.$apply(angular.copy(o.trackers[i], o.trackerObj));
+				
+				if(o.trackers[i] !== o.trackerObj) {
+					$rootScope.$apply(angular.copy(o.trackers[i], o.trackerObj));
+				}
 				return;
 			}
 		}
