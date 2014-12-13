@@ -18,7 +18,7 @@ exports.createOrUpdate = function(req, res) {
 	
 	var setUserStartBPM = function(count) {
 		if(count <= 7) {
-			Tracker.find({}, function(err, trackers) {
+			Tracker.find({user: req.user._id}, function(err, trackers) {
 				if (err) {
 					return; //TODO what should I do for this error?
 				}
