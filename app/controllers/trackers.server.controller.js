@@ -80,7 +80,7 @@ exports.createOrUpdate = function(req, res) {
 				} else {
 					res.jsonp(tracker);
 					
-					Tracker.count({}, function(err, count) {
+					Tracker.count({user: req.user._id}, function(err, count) {
 						if(err) {
 							return; //TODO what kind of error should be thrown here?
 						}
@@ -98,7 +98,7 @@ exports.createOrUpdate = function(req, res) {
 				} else {
 					res.jsonp(trackerReceived);
 					
-					Tracker.count({}, function(err, count) {
+					Tracker.count({user: req.user._id}, function(err, count) {
 						if(err) {
 							return; //TODO what kind of error should be thrown here?
 						}
